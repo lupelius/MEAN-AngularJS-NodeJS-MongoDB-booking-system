@@ -1,0 +1,6 @@
+<form ng-controller="LoginController as c">
+<h1>{{ tagline }}</h1>
+<input type="text" ng-model="c.username" name="username" />
+<button name="submit" ng-click="c.login()">Login</button>
+<div class="error">{{error}}</div>
+</form>

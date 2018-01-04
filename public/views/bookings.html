@@ -1,0 +1,31 @@
+<div ng-controller="BookingsController as c">
+  <h1>{{ tagline }}</h1>
+  <div>
+    <button type="button" ng-click="c.logout()">Logout</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <button type="button" ng-click="c.prev()">prev</button>
+          <button type="button" ng-click="c.todayF()">today</button>
+          <button type="button" ng-click="c.next()">next</button>
+        </th>
+        <th>{{ (c.yesterday.date.getDate() + " " + c.m_names[c.yesterday.date.getMonth()]) }}</th>
+        <th class="today">{{ (c.today.date.getDate() + " " + c.m_names[c.today.date.getMonth()]) }}</th>
+        <th>{{ (c.tomorrow.date.getDate() + " " + c.m_names[c.tomorrow.date.getMonth()]) }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in c.users track by $index" index="$index">
+        <td>{{user.username}}</td>
+        <td ng-click="c.book(user._id, c.yesterday.date.getTime())">{{ user.yesterday }}</td>
+        <td ng-click="c.book(user._id, c.today.date.getTime())" class="today">
+          {{ user.today }}
+        </td>
+        <td ng-click="c.book(user._id, c.tomorrow.date.getTime())">{{ user.tomorrow }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="error">{{error}}</div>
+</div>
